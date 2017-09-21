@@ -17,4 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="ToolbarTextAppearance">
+        <item name="android:textColor">@color/light_gray</item>
+    </style>
+
 </resources>

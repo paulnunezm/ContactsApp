@@ -7,16 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".screens.contactList.ListActivity">
 
+        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="?attr/actionBarSize"
+        android:padding="2dp"
+        android:background="@android:color/transparent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="6dp"
+            android:elevation="4dp"
+            android:background="@color/white"
+            android:transitionName="toolbar"
+            app:titleTextAppearance="@style/ToolbarTextAppearance"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
@@ -29,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        app:srcCompat="@drawable/ic_add_contact"/>
 
 </android.support.design.widget.CoordinatorLayout>
