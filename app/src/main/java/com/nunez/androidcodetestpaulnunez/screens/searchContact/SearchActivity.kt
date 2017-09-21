@@ -1,10 +1,11 @@
 package com.nunez.androidcodetestpaulnunez.screens.searchContact
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.transition.Fade
+import android.transition.Slide
+import android.view.Gravity
 import com.nunez.androidcodetestpaulnunez.R
-
 import kotlinx.android.synthetic.main.search_contact_activity_.*
 
 class SearchActivity : AppCompatActivity() {
@@ -14,10 +15,19 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.search_contact_activity_)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        toolbar.apply {
+            inflateMenu(R.menu.menu_search_activity)
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {  }
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            val transition = Slide(Gravity.BOTTOM)
+            transition.excludeTarget(android.R.id.statusBarBackground, true)
+            transition.excludeTarget(android.R.id.navigationBarBackground, true)
+            transition.excludeTarget(R.id.appBarLayout, true)
+            window.enterTransition = transition
+            window.exitTransition = Fade()
         }
     }
-
 }

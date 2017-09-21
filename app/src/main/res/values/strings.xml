@@ -5,4 +5,5 @@
     <string name="title_activity_search_contact">SearchContactActivity</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_add_edit">AddEditActivity</string>
+    <string name="search_activity_toolbar_clear">Clear search</string>
 </resources>
