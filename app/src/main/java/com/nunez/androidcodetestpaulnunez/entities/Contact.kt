@@ -9,14 +9,15 @@ open class Contact(
         @PrimaryKey var id: String = "",
         var firstName: String = "",
         var lastName: String = "",
-        var phonenumbers: RealmList<Phonenumber> = RealmList(),
-        var adresses: RealmList<Address> = RealmList()
+        var favorite: Boolean = false,
+        var birthday: String = "",
+        var phonenumbers: RealmList<PhoneNumber> = RealmList(),
+        var adresses: RealmList<Address> = RealmList(),
+        var emails: RealmList<Email> = RealmList()
 ) : RealmObject()
 
-open class Phonenumber(
-        var number: String = ""
-) : RealmObject()
+open class PhoneNumber(var number: String = "") : RealmObject()
 
-open class Address(
-        var address: String = ""
-): RealmObject()
+open class Address(var address: String = "") : RealmObject()
+
+open class Email(var email: String = "") : RealmObject()
