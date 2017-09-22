@@ -109,13 +109,15 @@ class ListInteractor(
 
         for (i in 0..10) {
             val contact = getFakeContact(faker, false)
-            repository.create(contact)
+            repository.create(contact).subscribe({
+            })
             contacts.add(contact)
         }
 
         for (i in 0..6) {
             val contact = getFakeContact(faker, true)
-            repository.create(contact)
+            repository.create(contact).subscribe({
+            })
             contacts.add(contact)
         }
         return Single.just(contacts)
