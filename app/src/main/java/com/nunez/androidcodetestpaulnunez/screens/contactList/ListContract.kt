@@ -11,6 +11,7 @@ interface ListContract {
         fun contactClickListener(id: String)
         fun contactLongClickListener(id: String)
         fun toolbarClickListener()
+        fun showEmtpyScreen()
         fun showContacts(contacts: List<Contact>)
         fun showOptionsModalBottomSheet(id: String)
         fun showErrorMessage(message: String)
@@ -18,7 +19,7 @@ interface ListContract {
         fun goToAddActivity()
         fun goToEditActivity(contactId: String)
         fun goToDetailsActivity(contactId: String)
-        fun goToSearchActivity(contactId: String)
+        fun goToSearchActivity()
     }
 
     interface Presenter {
