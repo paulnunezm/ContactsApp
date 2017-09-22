@@ -28,7 +28,6 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_contact_activity_)
-        setSupportActionBar(toolbar)
 
         setUpAnimations()
         instantateDepenencies()
@@ -45,7 +44,11 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
         toolbar.apply {
             inflateMenu(R.menu.menu_search_activity)
             setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener { }
+            setNavigationOnClickListener { onBackPressed() }
+            setOnMenuItemClickListener {
+                searchInput.setText("")
+                true
+            }
         }
 
         searchInput.addTextChangedListener(object : TextWatcher {
