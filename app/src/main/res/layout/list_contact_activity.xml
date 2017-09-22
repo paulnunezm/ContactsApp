@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,31 +8,36 @@
     android:layout_height="match_parent"
     tools:context=".screens.contactList.ListActivity">
 
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:padding="2dp"
-        android:background="@android:color/transparent">
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:padding="2dp"-->
+        <!--android:elevation="4dp"-->
+        <!--android:background="@android:color/transparent" >-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="6dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="6dp"
-            android:elevation="4dp"
-            android:background="@color/white"
-            android:transitionName="toolbar"
-            app:titleTextAppearance="@style/ToolbarTextAppearance"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-    </android.support.design.widget.AppBarLayout>
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/light_gray">
+       <android.support.v7.widget.Toolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginBottom="2dp"
+           android:layout_marginLeft="8dp"
+           android:layout_marginRight="8dp"
+           android:layout_marginTop="2dp"
+           android:background="@color/white"
+           android:transitionName="toolbar"
+           android:elevation="4dp"
+           app:titleTextAppearance="@style/ToolbarTextAppearance" />
 
-    <include layout="@layout/content_contact_list"/>
+       <!--</android.support.design.widget.AppBarLayout>-->
 
+       <include layout="@layout/content_contact_list"/>
+
+   </FrameLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
