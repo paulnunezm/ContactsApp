@@ -23,11 +23,13 @@
             app:titleTextAppearance="@style/ToolbarTextAppearance">
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/searchInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:singleLine="true"
                 android:textColor="@color/black"/>
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

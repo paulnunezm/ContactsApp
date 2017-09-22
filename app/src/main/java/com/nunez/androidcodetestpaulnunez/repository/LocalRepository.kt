@@ -13,9 +13,16 @@ import java.util.*
 class LocalRepository(
         val realm: Realm
 ) : RepositoryContract {
+
     override fun create(contact: Contact): Completable {
         return Completable.create {
             contact.id = UUID.randomUUID().toString()
+
+            contact.apply {
+                firstName = contact.firstName.toLowerCase()
+                lastName = contact.lastName.toLowerCase()
+            }
+
             contact.create()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -25,6 +32,10 @@ class LocalRepository(
         return Single.create {
             emitter ->
             val list = Contact().querySorted("firstName", Sort.ASCENDING)
+            list.map {
+                it.firstName = it.firstName.capitalize()
+                it.lastName = it.lastName.capitalize()
+            }
             emitter.onSuccess(list)
         }
     }
@@ -46,28 +57,35 @@ class LocalRepository(
     }
 
     override fun getContact(contactId: String): Single<Contact> {
-       return Single.create {
-           emitter ->
-           val contact = Contact().queryFirst { it.equalTo("id", contactId) }
+        return Single.create {
+            emitter ->
+            val contact = Contact().queryFirst { it.equalTo("id", contactId) }
 
-           contact?.let {
-               emitter.onSuccess(it)
-           }
-           emitter.onSuccess(Contact())
-       }
+            contact?.let {
+                it.firstName = it.firstName.capitalize()
+                it.lastName = it.lastName.capitalize()
+                emitter.onSuccess(it)
+            }
+            emitter.onSuccess(Contact())
+        }
     }
 
     override fun search(query: String): Single<List<Contact>> {
         return Single.create {
             val results = realm.where(Contact::class.java)
-                    .contains("name", query)
+                    .contains("firstName", query)
                     .or()
-                    .contains("lastname", query)
+                    .contains("lastName", query)
                     .or()
-                    .contains("phonenumbers", query)
-                    .findAllSorted("name")
+                    .contains("phonenumbers.number", query)
+                    .findAllSorted("firstName")
+
 
             val list: List<Contact> = realm.copyFromRealm(results)
+            list.map {
+                it.firstName = it.firstName.capitalize()
+                it.lastName = it.lastName.capitalize()
+            }
             it.onSuccess(list)
         }
     }

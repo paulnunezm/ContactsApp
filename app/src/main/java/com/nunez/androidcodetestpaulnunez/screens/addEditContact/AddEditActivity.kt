@@ -9,6 +9,10 @@ import kotlinx.android.synthetic.main.add_edit_activity.*
 
 class AddEditActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_CONTACT_ID = "contact_id"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_edit_activity)

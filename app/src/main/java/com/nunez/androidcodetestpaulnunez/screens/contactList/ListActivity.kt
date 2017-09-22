@@ -1,7 +1,6 @@
 package com.nunez.androidcodetestpaulnunez.screens.contactList
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
@@ -111,22 +110,20 @@ class ListActivity : AppCompatActivity(), ListContract.View {
 
     override fun goToEditActivity(contactId: String) {
         val intent = Intent(this, AddEditActivity::class.java)
+        intent.putExtra(AddEditActivity.EXTRA_CONTACT_ID, contactId)
         startActivity(intent)
     }
 
     override fun goToDetailsActivity(contactId: String) {
         val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(DetailsActivity.EXTRA_CONTACT_ID, contactId)
         startActivity(intent)
     }
 
     override fun goToSearchActivity() {
         val intent = Intent(this, SearchActivity::class.java)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, toolbar, "toolbar")
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            startActivity(intent, options.toBundle())
-        else
-            startActivity(intent)
+        startActivity(intent, options.toBundle())
     }
 
 }
