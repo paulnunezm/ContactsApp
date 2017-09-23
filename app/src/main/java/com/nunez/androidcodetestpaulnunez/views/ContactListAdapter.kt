@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.item_favorite_contact.view.*
 class ContactListAdapter(
         var list: List<Contact>,
         val isFavoriteList: Boolean = false,
-        clickListener: (id: String) -> (Unit),
-        longClickListener: (id: String) -> (Unit)
+        val clickListener: (id: String) -> (Unit),
+        val longClickListener: (id: String) -> (Unit)
 ) : RecyclerView.Adapter<ContactListAdapter.BaseHolder>() {
 
     override fun onBindViewHolder(holder: BaseHolder?, position: Int) {
@@ -29,27 +29,49 @@ class ContactListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseHolder {
         if (isFavoriteList) {
             val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_favorite_contact, parent, false)
-            return FavoriteHolder(view)
+            return FavoriteHolder(view, clickListener, longClickListener)
         } else {
             val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_contact, parent, false)
-            return ContactHolder(view)
+            return ContactHolder(view, clickListener, longClickListener)
         }
     }
 
-    abstract class BaseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        open fun bind(contact: Contact) {}
+    abstract class BaseHolder(itemView: View,
+                              val clickListener: (id: String) -> Unit,
+                              val longClickListener: (id: String) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        open fun bind(contact: Contact ) {
+            itemView.setOnClickListener { clickListener(contact.id) }
+            itemView.isLongClickable = true
+            itemView.setOnLongClickListener {
+                longClickListener(contact.id)
+                true
+            }
+        }
     }
 
-    class FavoriteHolder(itemView: View) : BaseHolder(itemView) {
+    class FavoriteHolder(itemView: View,
+                         clickListener: (id: String) -> Unit,
+                         longClickListener: (id: String) -> Unit
+    ) : BaseHolder(itemView, clickListener, longClickListener) {
         override fun bind(contact: Contact) {
+            super.bind(contact)
+
             itemView.favoriteName.text = contact.firstName
         }
     }
 
-    class ContactHolder(itemView: View) : BaseHolder(itemView) {
+    class ContactHolder(itemView: View,
+                        clickListener: (id: String) -> Unit,
+                        longClickListener: (id: String) -> Unit
+    ) : BaseHolder(itemView, clickListener, longClickListener) {
+
         override fun bind(contact: Contact) {
+            super.bind(contact)
+
             val contactName = contact.firstName + " " + contact.lastName
-            with(itemView){
+            with(itemView) {
                 name.text = contactName
                 phone.text = contact.phonenumbers[0].number
             }
