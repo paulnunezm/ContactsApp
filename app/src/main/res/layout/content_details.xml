@@ -10,10 +10,9 @@
 
     <ImageView
         android:id="@+id/phoneImage"
+        style="@style/DetailsScreenImage"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/ic_phone"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -31,13 +30,11 @@
         tools:layout_editor_absoluteY="18dp">
 
         <TextView
-            android:id="@+id/phone"
+            style="@style/DetailsScreenText"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/lato_light"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:text="809-585-2558"/>
+            android:visibility="gone"
+            tools:text="809-585-2558"
+            tools:visibility="visible"/>
     </LinearLayout>
 
     <View
@@ -52,6 +49,7 @@
 
     <ImageView
         android:id="@+id/emailImage"
+        style="@style/DetailsScreenImage"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
@@ -73,13 +71,12 @@
         tools:layout_editor_absoluteY="18dp">
 
         <TextView
-            android:id="@+id/email"
+            style="@style/DetailsScreenText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:fontFamily="@font/lato_light"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:text="paulnunezm@gmail.com"/>
+            android:visibility="gone"
+            tools:text="paulnunezm@gmail.com"
+            tools:visibility="visible"/>
     </LinearLayout>
 
     <View
@@ -95,10 +92,9 @@
 
     <ImageView
         android:id="@+id/addressImage"
+        style="@style/DetailsScreenImage"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/view2"/>
@@ -116,13 +112,12 @@
         tools:layout_editor_absoluteY="18dp">
 
         <TextView
-            android:id="@+id/address"
+            style="@style/DetailsScreenText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:fontFamily="@font/lato_light"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:text="paulnunezm@gmail.com"/>
+            android:visibility="gone"
+            tools:text="paulnunezm@gmail.com"
+            tools:visibility="visible"/>
     </LinearLayout>
 
     <View
@@ -139,10 +134,9 @@
 
     <ImageView
         android:id="@+id/birthdayImage"
+        style="@style/DetailsScreenImage"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/ic_cake"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view3"
@@ -150,13 +144,10 @@
 
     <TextView
         android:id="@+id/birthday"
+        style="@style/DetailsScreenText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="0dp"
         android:layout_marginStart="24dp"
-        android:fontFamily="@font/lato_light"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/birthdayImage"
         app:layout_constraintTop_toTopOf="@+id/birthdayImage"
