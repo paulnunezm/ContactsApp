@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
@@ -71,13 +72,16 @@ class ListActivity : AppCompatActivity(), ListContract.View {
         }
 
         val adapter = ContactListAdapter(contacts, false, {
-
+            id ->
+            Log.d(this@ListActivity.localClassName, "clicked")
+            goToDetailsActivity(id)
         }, {
 
         })
 
         val favoritesAdapter = ContactListAdapter(favoriteContacts, true, {
-
+            id ->
+            goToDetailsActivity(id)
         }, {
 
         })
