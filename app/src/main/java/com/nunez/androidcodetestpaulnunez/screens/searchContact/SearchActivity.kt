@@ -89,7 +89,7 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     }
 
     override fun goToDetailsActivity(contactId: String) {
-        val intent = Intent(this, SearchActivity::class.java)
+        val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(DetailsActivity.EXTRA_CONTACT_ID, contactId)
         startActivity(intent)
     }
