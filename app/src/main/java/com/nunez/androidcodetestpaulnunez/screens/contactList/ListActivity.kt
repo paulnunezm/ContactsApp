@@ -40,7 +40,7 @@ class ListActivity : AppCompatActivity(), ListContract.View {
             setOnClickListener { toolbarClickListener() }
         }
 
-        fab.setOnClickListener { }
+        fab.setOnClickListener { presenter.onAdContactClicked() }
 
         val layoutManager = LinearLayoutManager(this)
         val FavoritesLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

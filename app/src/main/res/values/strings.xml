@@ -7,4 +7,14 @@
     <string name="title_activity_add_edit">AddEditActivity</string>
     <string name="search_activity_toolbar_clear">Clear search</string>
     <string name="pref_initialized">has_been_initialized</string>
+
+
+    <string name="addEdit_input_hint_name">Name</string>
+    <string name="addEdit_input_hint_last_name">Last Name</string>
+    <string name="addEdit_input_empty_error">Field cannot be empty</string>
+    <string name="addEdit_input_hint_phone">Phone number</string>
+    <string name="addEdit_input_hint_address">Address</string>
+    <string name="addEdit_input_hint_email">Email</string>
+    <string name="addEdit_input_hint_birthday">Birthday</string>
+    <string name="addEdit_menu_action_save">Save</string>
 </resources>
