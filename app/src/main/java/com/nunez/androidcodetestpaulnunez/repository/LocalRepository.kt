@@ -16,6 +16,7 @@ class LocalRepository(
 
     override fun create(contact: Contact): Completable {
         return Completable.create {
+            emitter ->
             contact.id = UUID.randomUUID().toString()
 
             contact.apply {
@@ -24,6 +25,7 @@ class LocalRepository(
             }
 
             contact.create()
+            emitter.onComplete()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
