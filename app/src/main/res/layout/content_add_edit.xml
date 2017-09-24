@@ -9,4 +9,56 @@
     tools:context=".screens.addEditContact.AddEditActivity"
     tools:showIn="@layout/add_edit_activity">
 
+    <LinearLayout
+        android:id="@+id/nameFields"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:paddingLeft="56dp"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/addEdit_input_hint_name"
+            android:tooltipText="Hello">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/firstName"
+                style="@style/AddEditTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Paul"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/addEdit_input_hint_last_name">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/lastName"
+                style="@style/AddEditTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Núñez"/>
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/nameFields">
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
