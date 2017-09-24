@@ -8,16 +8,25 @@ interface AddEditContract {
 
     interface View {
         fun showContact(contact: Contact)
-        fun getFieldValues(): Map<String, Any>
-        fun getContact(): Contact
+        fun getFirstNameValue():String
+        fun getLastNameValue(): String
+        fun getPhoneValues(): ArrayList<String>
+        fun getEmailValues(): ArrayList<String>
+        fun getAddressValues(): ArrayList<String>
+        fun getBirthDayValue(): String
         fun showFirstNameError()
         fun showPhoneError()
         fun showEmailError()
+        fun showContactSaved()
+        fun saveButtonClickListener()
+        fun deleteButtonClickListener()
+        fun closeView(onDelete:Boolean)
     }
 
     interface Presenter {
         fun requestContact(contactId: String)
         fun onSaveClicked()
+        fun onDeleteClicked(contactId: String)
         fun validateFields()
     }
 
