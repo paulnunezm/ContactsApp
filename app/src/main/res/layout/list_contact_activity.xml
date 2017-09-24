@@ -8,36 +8,32 @@
     android:layout_height="match_parent"
     tools:context=".screens.contactList.ListActivity">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:padding="2dp"-->
-        <!--android:elevation="4dp"-->
-        <!--android:background="@android:color/transparent" >-->
-
-
    <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/light_gray">
+       android:background="@color/lighter_gray">
+
+       <View
+           android:id="@+id/rectangle"
+           android:layout_width="match_parent"
+           android:layout_height="220dp"
+           android:background="@color/colorPrimary"/>
+
        <android.support.v7.widget.Toolbar
            android:id="@+id/toolbar"
            android:layout_width="match_parent"
            android:layout_height="50dp"
-           android:layout_marginBottom="2dp"
-           android:layout_marginLeft="8dp"
-           android:layout_marginRight="8dp"
-           android:layout_marginTop="2dp"
+           android:layout_marginLeft="16dp"
+           android:layout_marginRight="16dp"
+           android:layout_marginTop="8dp"
            android:background="@color/white"
            android:transitionName="toolbar"
            android:elevation="4dp"
            app:titleTextAppearance="@style/ToolbarTextAppearance" />
 
-       <!--</android.support.design.widget.AppBarLayout>-->
-
-       <include layout="@layout/content_contact_list"/>
-
+           <include layout="@layout/content_contact_list"/>
    </FrameLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
