@@ -11,6 +11,8 @@ interface DetailsContract {
         fun birthdayClickListener(birthday: String)
         fun addressClickListener(address: String)
         fun favoriteButtonListener()
+        fun editButtonListener()
+        fun gotoEditActivity()
     }
 
     interface Presenter {
@@ -19,6 +21,7 @@ interface DetailsContract {
         fun onPhoneClick(number:String)
         fun onBirthdayClick(birthday: String)
         fun onAddressClick(address: String)
+        fun onEditButtonClicked()
     }
 
     interface Interactor {
