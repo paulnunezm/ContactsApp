@@ -49,9 +49,12 @@ class LocalRepository(
 
     override fun delete(id: String): Completable {
         return Completable.create {
+            emitter ->
             Contact().delete {
                 it.equalTo("id", id)
             }
+
+            emitter.onComplete()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
