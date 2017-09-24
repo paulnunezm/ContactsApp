@@ -17,4 +17,7 @@
     <string name="addEdit_input_hint_email">Email</string>
     <string name="addEdit_input_hint_birthday">Birthday</string>
     <string name="addEdit_menu_action_save">Save</string>
+    <string name="addEdit_menu_action_delete">Delete</string>
+
+    <string name="details_menu_action_edit">Edit</string>
 </resources>
