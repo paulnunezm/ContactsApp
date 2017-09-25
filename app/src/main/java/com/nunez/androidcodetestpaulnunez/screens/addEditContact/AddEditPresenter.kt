@@ -13,6 +13,7 @@ class AddEditPresenter(
 ) : AddEditContract.Presenter {
 
     var onEditMode = false
+    var isFavorite = false
 
 
     private fun phonesToRealmList(phoneValues: ArrayList<String>): RealmList<PhoneNumber> {
@@ -38,6 +39,7 @@ class AddEditPresenter(
         interactor.getContact(contactId).subscribe({
             t: Contact? ->
             t?.let {
+                isFavorite = t.favorite
                 view.showContact(t)
             }
         }, {
@@ -47,13 +49,12 @@ class AddEditPresenter(
 
     override fun onSaveClicked() {
 
-        // TODO: get favorite
 
         val contact = Contact(
                 "",
                 view.getFirstNameValue(),
                 view.getLastNameValue(),
-                false,
+                isFavorite,
                 view.getBirthDayValue(),
                 phonesToRealmList(view.getPhoneValues()),
                 addressesToRealmList(view.getAddressValues()),
