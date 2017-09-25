@@ -11,6 +11,7 @@ interface DetailsContract {
         fun phoneClickListener(number: String)
         fun birthdayClickListener(birthday: String)
         fun addressClickListener(address: String)
+        fun emailClickListener(email: String)
         fun favoriteButtonListener()
         fun editButtonListener()
         fun gotoEditActivity()
