@@ -12,8 +12,12 @@ class AddEditPresenter(
         val interactor: AddEditContract.Interactor
 ) : AddEditContract.Presenter {
 
+    companion object {
+        val TAG = "AddEditPresenter"
+    }
     var onEditMode = false
     var isFavorite = false
+    var contactId = ""
 
 
     private fun phonesToRealmList(phoneValues: ArrayList<String>): RealmList<PhoneNumber> {
@@ -35,6 +39,7 @@ class AddEditPresenter(
     }
 
     override fun requestContact(contactId: String) {
+        this.contactId = contactId
         onEditMode = true
         interactor.getContact(contactId).subscribe({
             t: Contact? ->
@@ -49,36 +54,60 @@ class AddEditPresenter(
 
     override fun onSaveClicked() {
 
+        // do not save if validation fails
+        if (!validateFields())
+            return Unit  // Return unit is like return nothing
 
         val contact = Contact(
-                "",
+                contactId,
                 view.getFirstNameValue(),
                 view.getLastNameValue(),
                 isFavorite,
                 view.getBirthDayValue(),
                 phonesToRealmList(view.getPhoneValues()),
                 addressesToRealmList(view.getAddressValues()),
-                emailsToRealmList(view.getAddressValues())
+                emailsToRealmList(view.getEmailValues())
         )
 
-        interactor.saveContact(contact).subscribe({
-            view.showContactSaved()
-        }, {
-            // show error message
-        })
+        if(onEditMode){
+            interactor.updateContact(contact).subscribe({
+                view.showContactSaved() // message
+                Log.d(TAG, "Updated")
+            }, {
+                // show error message
+                Log.d(TAG, "Update error $it")
+            })
+
+        }else{
+            interactor.saveContact(contact).subscribe({
+                view.showContactSaved() // message
+            }, {
+                // show error message
+            })
+        }
     }
 
     override fun onDeleteClicked(contactId: String) {
-        Log.d("AddEditPresenter", "onDeleteClicked")
         interactor.deleteContact(contactId).subscribe({
-            Log.d("AddEditPresenter", "Going To closeView")
-            view.closeView(true)
+            view.closeView()
         }, {
             Log.d("AddEditPresenter", "On error")
         })
     }
 
-    override fun validateFields() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun validateFields(): Boolean {
+        if (view.getFirstNameValue().isEmpty() || // No name set
+                view.getPhoneValues().size < 1 || // At least one phone numbers set
+                view.getEmailValues().size < 1) { // At least one email set
+
+            // As Emails and Phone fields are custom field groups
+            // the errors are set by the class itself when the getFieldValue method
+            // is called.
+            if (view.getFirstNameValue().isEmpty()) view.showFirstNameError()
+
+            return false
+        }
+
+        return true
     }
 }
