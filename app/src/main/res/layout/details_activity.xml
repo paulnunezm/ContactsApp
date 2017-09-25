@@ -8,6 +8,7 @@
     tools:context=".screens.contactDetails.DetailsActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -70,7 +71,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/fab_margin"
-    app:layout_anchor="@id/collapsingToolBar"
+    app:layout_anchor="@id/appBar"
     app:layout_anchorGravity="right|bottom"
     app:srcCompat="@android:drawable/ic_dialog_email"/>
 
