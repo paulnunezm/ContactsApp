@@ -89,6 +89,7 @@
             android:id="@+id/emailsFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            customFieldGroup:input_error_message="@string/addEdit_input_empty_error"
             customFieldGroup:input_has_at_least_one="true"
             customFieldGroup:input_hint="@string/addEdit_input_hint_email"
             customFieldGroup:input_type="text"

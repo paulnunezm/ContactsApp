@@ -44,7 +44,11 @@ class LocalRepository(
 
     override fun update(contact: Contact): Completable {
         return Completable.create {
+            emitter->
+            contact.firstName = contact.firstName.toLowerCase()
+            contact.lastName= contact.lastName.toLowerCase()
             contact.save()
+            emitter.onComplete()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

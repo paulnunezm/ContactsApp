@@ -153,7 +153,8 @@ class CustomFieldGroup @JvmOverloads constructor(
         val values = ArrayList<String>()
 
         if (values.size == 0 && fieldsArray[0].getFieldValue().isEmpty()) {
-            fieldsArray[0].setError(errorMessage)
+            if(mustHaveAtLeastOneFilled)
+                fieldsArray[0].setError(errorMessage)
         } else {
             fieldsArray.filter {
                 it.getFieldValue().isNotEmpty()
