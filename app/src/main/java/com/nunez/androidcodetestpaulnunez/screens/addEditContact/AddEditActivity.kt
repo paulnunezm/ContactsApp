@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.TextView
 import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
 import com.nunez.androidcodetestpaulnunez.repository.RepositoryContract
 import com.nunez.androidcodetestpaulnunez.screens.contactList.ListActivity
+import com.nunez.androidcodetestpaulnunez.views.DatePickerFragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.add_edit_activity.*
 import kotlinx.android.synthetic.main.content_add_edit.*
@@ -49,6 +51,11 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
             supportActionBar?.title = "Edit contact"
 
             presenter.requestContact(contactId as String)
+        }
+
+        birthdayField.setOnFocusChangeListener { view, b ->
+            if(b)
+                birthdayClickListener()
         }
 
     }
@@ -148,6 +155,18 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
 
     override fun getBirthDayValue(): String {
         return birthdayField.text.toString()
+    }
+
+    override fun birthdayClickListener() {
+        val datePicker = DatePickerFragment()
+
+        datePicker.apply {
+            setDateSelecterListener {
+                findViewById<EditText>(R.id.birthdayField).setText(it, TextView.BufferType.EDITABLE)
+            }
+            show(supportFragmentManager, "datePicker")
+        }
+
     }
 
     override fun showFirstNameError() {

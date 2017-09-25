@@ -19,6 +19,7 @@ interface AddEditContract {
         fun showContactSaved()
         fun saveButtonClickListener()
         fun deleteButtonClickListener()
+        fun birthdayClickListener()
         fun closeView()
     }
 
