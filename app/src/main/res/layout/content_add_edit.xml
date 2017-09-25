@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:customFieldGroup="http://schemas.android.com/apk/res-auto"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/nameFields">
 
         <com.nunez.compoundedittext.CustomFieldGroup
-            android:id="@+id/phoneField"
+            android:id="@+id/phoneFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             customFieldGroup:input_error_message="@string/addEdit_input_empty_error"
@@ -77,7 +78,7 @@
             customFieldGroup:reference_image="@drawable/ic_phone"/>
 
         <com.nunez.compoundedittext.CustomFieldGroup
-            android:id="@+id/addressField"
+            android:id="@+id/addressFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             customFieldGroup:input_hint="@string/addEdit_input_hint_address"
@@ -85,14 +86,13 @@
             customFieldGroup:reference_image="@drawable/ic_location"/>
 
         <com.nunez.compoundedittext.CustomFieldGroup
-            android:id="@+id/emailsField"
+            android:id="@+id/emailsFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             customFieldGroup:input_has_at_least_one="true"
             customFieldGroup:input_hint="@string/addEdit_input_hint_email"
             customFieldGroup:input_type="text"
             customFieldGroup:reference_image="@drawable/ic_email"/>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                 android:background="@drawable/ic_cake"/>
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/birthday"
+                android:id="@+id/birthdayField"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:hint="@string/addEdit_input_hint_birthday"

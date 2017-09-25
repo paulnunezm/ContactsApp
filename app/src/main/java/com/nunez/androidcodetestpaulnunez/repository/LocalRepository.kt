@@ -16,6 +16,7 @@ class LocalRepository(
 
     override fun create(contact: Contact): Completable {
         return Completable.create {
+            emitter ->
             contact.id = UUID.randomUUID().toString()
 
             contact.apply {
@@ -24,6 +25,7 @@ class LocalRepository(
             }
 
             contact.create()
+            emitter.onComplete()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
@@ -49,9 +51,12 @@ class LocalRepository(
 
     override fun delete(id: String): Completable {
         return Completable.create {
+            emitter ->
             Contact().delete {
                 it.equalTo("id", id)
             }
+
+            emitter.onComplete()
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

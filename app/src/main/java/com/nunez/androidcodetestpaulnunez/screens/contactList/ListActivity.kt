@@ -50,6 +50,11 @@ class ListActivity : AppCompatActivity(), ListContract.View {
         presenter.requestContacts()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.requestContacts()
+    }
+
     override fun addContactClickListener() {
         presenter.onAdContactClicked()
     }

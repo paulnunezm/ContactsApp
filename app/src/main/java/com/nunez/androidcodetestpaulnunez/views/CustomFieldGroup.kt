@@ -38,7 +38,7 @@ class CustomFieldGroup @JvmOverloads constructor(
 
         addNewBtn.visibility = View.GONE
 
-        addNewBtn.setOnClickListener { addNewField() }
+        addNewBtn.setOnClickListener { addNewField(true) }
 
         // Check for the added parameters
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFieldGroup)
@@ -71,7 +71,7 @@ class CustomFieldGroup @JvmOverloads constructor(
         addNewBtn.visibility = View.GONE
     }
 
-    private fun addNewField() {
+    private fun addNewField(requestFocus: Boolean = false) {
         hideAddButton()
 
         // Create a new field
@@ -98,7 +98,7 @@ class CustomFieldGroup @JvmOverloads constructor(
         setListenerToTheLastVisibleField()
 
         // Set focus to the new field if is not the first
-        if (fieldsArray.size > 1) field.requestFocus()
+        if (fieldsArray.size > 1 && requestFocus) field.requestFocus()
     }
 
     private fun initTexWatcherListener() {
@@ -135,6 +135,17 @@ class CustomFieldGroup @JvmOverloads constructor(
             textWatcher.resetWatcher()
             fieldsArray[fieldsArray.size - 2].removeTextListener()
             fieldsArray[fieldsArray.size - 1].setTextListener(textWatcher)
+        }
+    }
+
+    fun setFieldValues(values: List<String>) {
+        for (i in 0..values.size - 1) {
+
+            // check if the field exists if not add a new
+            if (fieldsArray.size - 1 < i)
+                addNewField()
+
+            fieldsArray[i].setText(values[i])
         }
     }
 

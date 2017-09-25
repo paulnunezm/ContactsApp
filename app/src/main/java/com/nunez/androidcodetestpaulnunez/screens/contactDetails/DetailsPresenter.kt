@@ -6,7 +6,7 @@ import io.reactivex.schedulers.Schedulers
 class DetailsPresenter(
         val view: DetailsContract.View,
         val interactor: DetailsContract.Interactor
-): DetailsContract.Presenter {
+) : DetailsContract.Presenter {
 
     override fun requestContact(id: String) {
         interactor.getContact(id)
@@ -14,9 +14,13 @@ class DetailsPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showContact(it)
-                },{
+                }, {
                     // show error
                 })
+    }
+
+    override fun onEditButtonClicked() {
+        view.gotoEditActivity()
     }
 
     override fun onFavoriteClick(id: String) {

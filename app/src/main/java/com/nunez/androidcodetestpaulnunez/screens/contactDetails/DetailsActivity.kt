@@ -1,9 +1,12 @@
 package com.nunez.androidcodetestpaulnunez.screens.contactDetails
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -11,6 +14,7 @@ import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
 import com.nunez.androidcodetestpaulnunez.repository.RepositoryContract
+import com.nunez.androidcodetestpaulnunez.screens.addEditContact.AddEditActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.content_details.*
 import kotlinx.android.synthetic.main.details_activity.*
@@ -22,6 +26,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         const val EXTRA_CONTACT_ID = "contact_id"
     }
 
+    var contactId = ""
     lateinit var presenter: DetailsContract.Presenter
     lateinit var interactor: DetailsContract.Interactor
     lateinit var repository: RepositoryContract
@@ -44,9 +49,23 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
             navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_white)
         }
 
-        presenter.requestContact(intent.getStringExtra(EXTRA_CONTACT_ID))
+        contactId = intent.getStringExtra(EXTRA_CONTACT_ID)
+        presenter.requestContact(contactId)
 
         contactImage.setAspectRatio()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_details, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item?.itemId == R.id.action_edit){
+            editButtonListener()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -130,5 +149,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     override fun favoriteButtonListener() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun editButtonListener() {
+        presenter.onEditButtonClicked()
+    }
+
+    override fun gotoEditActivity() {
+        val intent = Intent(this, AddEditActivity::class.java)
+        intent.putExtra(AddEditActivity.EXTRA_CONTACT_ID, contactId)
+        startActivity(intent)
     }
 }

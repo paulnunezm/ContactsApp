@@ -5,6 +5,7 @@ import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.nunez.androidcodetestpaulnunez.R
 import kotlinx.android.synthetic.main.custom_field.view.*
 
@@ -34,6 +35,10 @@ class CustomField @JvmOverloads constructor(
     fun setTextListener(textWatcher: CustomTextWatcher) {
         this.textWatcher = textWatcher
         customField_editText.addTextChangedListener(this.textWatcher)
+    }
+
+    fun setText(value: String){
+        customField_editText.setText(value, TextView.BufferType.EDITABLE)
     }
 
     fun removeTextListener(){
