@@ -8,12 +8,16 @@ class DetailsPresenter(
         val interactor: DetailsContract.Interactor
 ) : DetailsContract.Presenter {
 
+    var isFavorite = false
+
     override fun requestContact(id: String) {
         interactor.getContact(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view.showContact(it)
+                    isFavorite = it.favorite
+                    if(it.favorite) view.setFavorite()
                 }, {
                     // show error
                 })
@@ -24,7 +28,17 @@ class DetailsPresenter(
     }
 
     override fun onFavoriteClick(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        isFavorite = !isFavorite
+
+        if(isFavorite){
+            view.setFavorite()
+            interactor.setToFavorites(id)
+                    .subscribe()
+        }else{
+            view.unsetFavorite()
+            interactor.removeFromFavorites(id)
+                    .subscribe()
+        }
     }
 
     override fun onPhoneClick(number: String) {
