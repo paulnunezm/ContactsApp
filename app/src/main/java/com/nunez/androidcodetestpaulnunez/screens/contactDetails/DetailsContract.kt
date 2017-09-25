@@ -1,6 +1,7 @@
 package com.nunez.androidcodetestpaulnunez.screens.contactDetails
 
 import com.nunez.androidcodetestpaulnunez.entities.Contact
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface DetailsContract {
@@ -13,6 +14,8 @@ interface DetailsContract {
         fun favoriteButtonListener()
         fun editButtonListener()
         fun gotoEditActivity()
+        fun setFavorite()
+        fun unsetFavorite()
     }
 
     interface Presenter {
@@ -26,7 +29,7 @@ interface DetailsContract {
 
     interface Interactor {
         fun getContact(id:String): Single<Contact>
-        fun setToFavorites(id: String)
-        fun removeFromFavorites(id: String)
+        fun setToFavorites(id: String): Completable
+        fun removeFromFavorites(id: String): Completable
     }
 }
