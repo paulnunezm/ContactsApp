@@ -49,6 +49,10 @@
         <item name="colorControlNormal">@color/lighter_gray</item>
     </style>
 
+    <style name="DetailsFabButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/light_gray</item>
+    </style>
+
 
 
 </resources>
