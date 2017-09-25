@@ -2,7 +2,6 @@ package com.nunez.androidcodetestpaulnunez.screens.addEditContact
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -152,29 +151,20 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
     }
 
     override fun showFirstNameError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        firstName.error = resources.getString(R.string.addEdit_input_empty_error)
     }
 
-    override fun showPhoneError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showEmailError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-
+    override fun hideFirstNameError() {
+        firstName.error = null
     }
 
     override fun showContactSaved() {
-        Snackbar.make(container, "Contact saved", Snackbar.LENGTH_SHORT).show()
+        closeView()
     }
 
-    override fun closeView(onDelete: Boolean) {
-        if (onDelete) {
+    override fun closeView() {
             val intent = Intent(this, ListActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-        }else{
-            finish()
-        }
     }
 }

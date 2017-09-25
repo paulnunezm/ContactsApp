@@ -15,19 +15,18 @@ interface AddEditContract {
         fun getAddressValues(): ArrayList<String>
         fun getBirthDayValue(): String
         fun showFirstNameError()
-        fun showPhoneError()
-        fun showEmailError()
+        fun hideFirstNameError()
         fun showContactSaved()
         fun saveButtonClickListener()
         fun deleteButtonClickListener()
-        fun closeView(onDelete:Boolean)
+        fun closeView()
     }
 
     interface Presenter {
         fun requestContact(contactId: String)
         fun onSaveClicked()
         fun onDeleteClicked(contactId: String)
-        fun validateFields()
+        fun validateFields(): Boolean
     }
 
     interface Interactor {
