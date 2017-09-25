@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -124,6 +123,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                 }
             } else {
                 emailList.visibility = View.GONE
+                emailImage.visibility = View.GONE
             }
 
             if (adresses.isNotEmpty()) {
@@ -132,11 +132,17 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
                 }
             } else {
                 addressList.visibility = View.GONE
+                addressImage.visibility = View.GONE
             }
         }
 
-        birthday.text = contact.birthday
-        Log.i(this@DetailsActivity.localClassName, contact.toString())
+        if(contact.birthday.isNotEmpty()){
+            birthday.text = contact.birthday
+        }else{
+            birthdayImage.visibility = View.GONE
+            birthday.visibility = View.GONE
+        }
+
     }
 
     override fun phoneClickListener(number: String) {
