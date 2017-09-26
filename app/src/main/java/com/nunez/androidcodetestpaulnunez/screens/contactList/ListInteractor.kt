@@ -10,6 +10,8 @@ import com.nunez.androidcodetestpaulnunez.entities.PhoneNumber
 import com.nunez.androidcodetestpaulnunez.repository.RepositoryContract
 import io.reactivex.Completable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.realm.RealmList
 import java.util.concurrent.TimeUnit
 
@@ -101,6 +103,8 @@ class ListInteractor(
 
     override fun deleteContact(id: String): Completable {
         return repository.delete(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun addFakeContacts(): Single<List<Contact>> {

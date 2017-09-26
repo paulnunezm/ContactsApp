@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
@@ -14,6 +13,7 @@ import com.nunez.androidcodetestpaulnunez.screens.addEditContact.AddEditActivity
 import com.nunez.androidcodetestpaulnunez.screens.contactDetails.DetailsActivity
 import com.nunez.androidcodetestpaulnunez.screens.searchContact.SearchActivity
 import com.nunez.androidcodetestpaulnunez.views.ContactListAdapter
+import com.nunez.androidcodetestpaulnunez.views.ListOptionsModal
 import io.realm.Realm
 import kotlinx.android.synthetic.main.content_contact_list.*
 import kotlinx.android.synthetic.main.list_contact_activity.*
@@ -42,10 +42,8 @@ class ListActivity : AppCompatActivity(), ListContract.View {
 
         fab.setOnClickListener { presenter.onAdContactClicked() }
 
-        val layoutManager = LinearLayoutManager(this)
-        val FavoritesLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        contactsRecycler.layoutManager = layoutManager
-        favoritesRecycler.layoutManager = FavoritesLayoutManager
+        contactsRecycler.layoutManager = LinearLayoutManager(this)
+        favoritesRecycler.layoutManager =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         presenter.requestContacts()
     }
@@ -78,17 +76,16 @@ class ListActivity : AppCompatActivity(), ListContract.View {
 
         val adapter = ContactListAdapter(contacts, false, {
             id ->
-            Log.d(this@ListActivity.localClassName, "clicked")
             goToDetailsActivity(id)
         }, {
-
+            presenter.onContactLongCliked(it)
         })
 
         val favoritesAdapter = ContactListAdapter(favoriteContacts, true, {
             id ->
             goToDetailsActivity(id)
         }, {
-
+            presenter.onContactLongCliked(it)
         })
 
         contactsRecycler.adapter = adapter
@@ -101,7 +98,24 @@ class ListActivity : AppCompatActivity(), ListContract.View {
     }
 
     override fun showOptionsModalBottomSheet(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val modalFrag = ListOptionsModal()
+        val bundle = Bundle()
+        bundle.putString("id", id)
+        modalFrag.arguments = bundle
+
+        modalFrag.editClickListener = {
+            id ->
+            presenter.onContactEditClicked(id)
+            modalFrag.dismiss()
+        }
+
+        modalFrag.onDeleteClickListener = {
+            id ->
+            presenter.onContactDeleteClicked(id)
+            modalFrag.dismiss()
+        }
+
+        modalFrag.show(supportFragmentManager, "optionsModal")
     }
 
     override fun showErrorMessage(message: String) {

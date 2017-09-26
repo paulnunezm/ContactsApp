@@ -39,7 +39,11 @@ class ListPresenter(
     }
 
     override fun onContactDeleteClicked(id: String) {
-        interactor.deleteContact(id).subscribe({},{showError()})
+        interactor.deleteContact(id).subscribe({
+            requestContacts()
+        },{
+            showError()
+        })
     }
 
     override fun onContactEditClicked(id: String) {

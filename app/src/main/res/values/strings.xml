@@ -20,4 +20,7 @@
     <string name="addEdit_menu_action_delete">Delete</string>
 
     <string name="details_menu_action_edit">Edit</string>
+    <string name="list_bottom_sheet_edit">Edit</string>
+    <string name="ist_bottom_sheet_options">Options</string>
+    <string name="list_bottom_sheet_delete">Delete</string>
 </resources>
