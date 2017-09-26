@@ -13,7 +13,7 @@
         <activity
             android:name=".screens.contactList.ListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

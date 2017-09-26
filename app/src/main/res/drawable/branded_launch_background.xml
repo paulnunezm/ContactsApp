@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="@color/white"/>
+    </item>
+    <item
+        android:drawable="@drawable/person_light_gray"
+        android:gravity="center" />
+</layer-list>

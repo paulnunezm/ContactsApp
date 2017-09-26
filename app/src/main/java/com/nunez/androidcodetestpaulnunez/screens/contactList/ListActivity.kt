@@ -28,6 +28,7 @@ class ListActivity : AppCompatActivity(), ListContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_contact_activity)
+        setTheme(R.style.AppTheme)
 
         val realm = Realm.getDefaultInstance()
         repository = LocalRepository(realm)
