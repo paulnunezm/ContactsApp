@@ -19,6 +19,8 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.content_contact_list.*
 import kotlinx.android.synthetic.main.list_contact_activity.*
 
+
+
 class ListActivity : AppCompatActivity(), ListContract.View {
 
     lateinit var presenter: ListContract.Presenter
@@ -92,6 +94,9 @@ class ListActivity : AppCompatActivity(), ListContract.View {
 
         contactsRecycler.adapter = adapter
         favoritesRecycler.adapter = favoritesAdapter
+
+        contactsRecycler.scheduleLayoutAnimation()
+        favoritesRecycler.scheduleLayoutAnimation()
 
     }
 
