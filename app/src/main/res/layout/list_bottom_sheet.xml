@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:background="@color/white"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center|start"
+        android:text="@string/ist_bottom_sheet_options"
+        android:textColor="@color/light_gray"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/bottom_sheet_edit"
+        style="@style/ListBottomSheetText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_bottom_sheet_text_height"
+        android:drawablePadding="32dp"
+        android:drawableStart="@drawable/ic_edit_light_gray"
+        android:text="@string/list_bottom_sheet_edit"/>
+
+    <TextView
+        android:id="@+id/bottom_sheet_delete"
+        style="@style/ListBottomSheetText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_bottom_sheet_text_height"
+        android:drawablePadding="32dp"
+        android:drawableStart="@drawable/ic_delete_light_gray"
+        android:text="@string/list_bottom_sheet_delete"/>
+
+</LinearLayout>

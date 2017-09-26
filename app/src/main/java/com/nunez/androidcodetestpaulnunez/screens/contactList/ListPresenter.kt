@@ -17,9 +17,10 @@ class ListPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-            if(it.isNotEmpty())
+            if(it.isNotEmpty()){
                 view.showContacts(it)
-            else
+                view.hideEmptyScreen()
+            }else
                 view.showEmtpyScreen()
         }, {
             showError()
@@ -39,7 +40,11 @@ class ListPresenter(
     }
 
     override fun onContactDeleteClicked(id: String) {
-        interactor.deleteContact(id).subscribe({},{showError()})
+        interactor.deleteContact(id).subscribe({
+            requestContacts()
+        },{
+            showError()
+        })
     }
 
     override fun onContactEditClicked(id: String) {
@@ -49,5 +54,4 @@ class ListPresenter(
     override fun onToolbarClicked() {
         view.goToSearchActivity()
     }
-
 }
