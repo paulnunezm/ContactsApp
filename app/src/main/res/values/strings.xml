@@ -24,4 +24,5 @@
     <string name="ist_bottom_sheet_options">Options</string>
     <string name="list_bottom_sheet_delete">Delete</string>
     <string name="list_empty_view_message">They\'re no contacts\ngo and add a few</string>
+    <string name="transition_contact_image">contact_image</string>
 </resources>

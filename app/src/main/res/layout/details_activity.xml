@@ -14,14 +14,17 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:statusBarScrim="@color/colorPrimary">
 
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:titleEnabled="true">
+
+            <!--app:contentScrim="@color/colorPrimary"-->
+
 
             <com.nunez.androidcodetestpaulnunez.views.DetailsImageView
                 android:id="@+id/contactImage"
@@ -72,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:theme="@style/DetailsFabButton"
+        android:transitionName="fab"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="right|bottom"
         app:srcCompat="@drawable/ic_star_full"/>

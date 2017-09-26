@@ -1,5 +1,6 @@
 package com.nunez.androidcodetestpaulnunez.screens.searchContact
 
+import android.view.View
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 
 class SearchPresenter(
@@ -23,7 +24,7 @@ class SearchPresenter(
         })
     }
 
-    override fun onContactCliked(id: String) {
-        view.goToDetailsActivity(id)
+    override fun onContactCliked(id: String, imageView: View) {
+        view.goToDetailsActivity(id, imageView)
     }
 }

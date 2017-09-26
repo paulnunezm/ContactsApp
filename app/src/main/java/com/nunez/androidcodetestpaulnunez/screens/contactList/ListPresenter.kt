@@ -1,5 +1,6 @@
 package com.nunez.androidcodetestpaulnunez.screens.contactList
 
+import android.view.View
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -17,22 +18,23 @@ class ListPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-            if(it.isNotEmpty()){
-                view.showContacts(it)
-                view.hideEmptyScreen()
-            }else
-                view.showEmtpyScreen()
-        }, {
-            showError()
-        })
+                    if (it.isNotEmpty()) {
+                        view.showContacts(it)
+                        view.hideEmptyScreen()
+                    } else
+                        view.showEmtpyScreen()
+                }, {
+                    showError()
+                })
     }
 
     override fun onAdContactClicked() {
         view.goToAddActivity()
     }
 
-    override fun onContactCliked(id: String) {
-        view.goToDetailsActivity(id)
+
+    override fun onContactCliked(id: String, imageView: View) {
+        view.goToDetailsActivity(id, imageView)
     }
 
     override fun onContactLongCliked(id: String) {
@@ -42,7 +44,7 @@ class ListPresenter(
     override fun onContactDeleteClicked(id: String) {
         interactor.deleteContact(id).subscribe({
             requestContacts()
-        },{
+        }, {
             showError()
         })
     }
