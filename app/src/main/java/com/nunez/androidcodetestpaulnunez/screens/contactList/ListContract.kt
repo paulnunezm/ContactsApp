@@ -12,6 +12,7 @@ interface ListContract {
         fun contactLongClickListener(id: String)
         fun toolbarClickListener()
         fun showEmtpyScreen()
+        fun hideEmptyScreen()
         fun showContacts(contacts: List<Contact>)
         fun showOptionsModalBottomSheet(id: String)
         fun showErrorMessage(message: String)

@@ -17,9 +17,10 @@ class ListPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-            if(it.isNotEmpty())
+            if(it.isNotEmpty()){
                 view.showContacts(it)
-            else
+                view.hideEmptyScreen()
+            }else
                 view.showEmtpyScreen()
         }, {
             showError()
@@ -53,5 +54,4 @@ class ListPresenter(
     override fun onToolbarClicked() {
         view.goToSearchActivity()
     }
-
 }

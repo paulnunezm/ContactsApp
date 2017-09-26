@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/list_contact_activity">
+
+    <LinearLayout
+        android:id="@+id/emptyListMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="200dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_person_light_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/list_empty_view_message"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/listContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="72dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".screens.contactList.ListActivity"
-
-    tools:showIn="@layout/list_contact_activity">
+    tools:visibility="gone">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/favoritesRecycler"
@@ -56,3 +83,5 @@
 
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

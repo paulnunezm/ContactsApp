@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
@@ -43,7 +44,7 @@ class ListActivity : AppCompatActivity(), ListContract.View {
         fab.setOnClickListener { presenter.onAdContactClicked() }
 
         contactsRecycler.layoutManager = LinearLayoutManager(this)
-        favoritesRecycler.layoutManager =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        favoritesRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         presenter.requestContacts()
     }
@@ -94,7 +95,13 @@ class ListActivity : AppCompatActivity(), ListContract.View {
     }
 
     override fun showEmtpyScreen() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        emptyListMessage.visibility = View.VISIBLE
+        listContainer.visibility = View.GONE
+    }
+
+    override fun hideEmptyScreen() {
+        emptyListMessage.visibility = View.GONE
+        listContainer.visibility = View.VISIBLE
     }
 
     override fun showOptionsModalBottomSheet(id: String) {
