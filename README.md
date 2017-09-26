@@ -6,7 +6,7 @@ This test demonstrates a simple contacts application using Kotlin, RxJava, Faker
 ![Intro animation](screenshots/intro_animation.gif?raw=true)
 ![Search bar animation](screenshots/search_bar_animation.gif?raw=true)
 ![BottomSheet](screenshots/bottom_sheet.gif?raw=true)
-![Add contact screen](add_contact_scren.png?raw=true) 
+![Add contact screen](screenshots/add_contact_scren.png?raw=true) 
 
 ### Description
 The app shows basic CRUD functionality and search implementations according to this set of
