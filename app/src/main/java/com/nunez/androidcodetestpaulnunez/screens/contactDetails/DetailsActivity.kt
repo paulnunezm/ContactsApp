@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.transition.Fade
 import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
@@ -24,11 +25,14 @@ import kotlinx.android.synthetic.main.details_activity.*
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     companion object {
+        const val TAG = "DetailsActivity"
         const val EXTRA_CONTACT_ID = "contact_id"
+        const val EXTRA_TRANSITION_NAME = "transition_name"
     }
 
     var contactId = ""
     var contactName = ""
+    var transitionName = ""
     var contactBirthday = ""
     var rowHeight = 0
     lateinit var presenter: DetailsContract.Presenter
@@ -39,6 +43,8 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.details_activity)
         setSupportActionBar(toolbar)
+
+        postponeEnterTransition()
 
         instantateDepenencies()
 
@@ -56,10 +62,16 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         favoriteButton.setOnClickListener { favoriteButtonListener() }
 
         contactId = intent.getStringExtra(EXTRA_CONTACT_ID)
+        transitionName = intent.getStringExtra(EXTRA_TRANSITION_NAME)
+
         presenter.requestContact(contactId)
 
         contactImage.setAspectRatio()
+
+
         rowHeight = convertDpToPx(50)
+
+        startPostponedEnterTransition()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,6 +90,32 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+
+    private fun setUpAnimations() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            val enterTransition = Fade()
+            val exitTransition = Fade()
+
+            with(enterTransition) {
+                startDelay = 500
+                excludeTarget(android.R.id.statusBarBackground, true)
+                excludeTarget(android.R.id.navigationBarBackground, true)
+            }
+
+            with(exitTransition) {
+                duration = 100
+                excludeTarget(android.R.id.statusBarBackground, true)
+                excludeTarget(android.R.id.navigationBarBackground, true)
+            }
+
+            window.enterTransition = enterTransition
+        }
     }
 
     private fun instantateDepenencies() {

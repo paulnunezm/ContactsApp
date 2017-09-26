@@ -19,16 +19,24 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.content_contact_list.*
 import kotlinx.android.synthetic.main.list_contact_activity.*
 
+
 class ListActivity : AppCompatActivity(), ListContract.View {
+
+    companion object {
+        const val TAG = "ListActivity"
+    }
 
     lateinit var presenter: ListContract.Presenter
     lateinit var interactor: ListContract.Interactor
     lateinit var repository: RepositoryContract
 
+    var isResuming = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_contact_activity)
         setTheme(R.style.AppTheme)
+
 
         val realm = Realm.getDefaultInstance()
         repository = LocalRepository(realm)
@@ -52,15 +60,16 @@ class ListActivity : AppCompatActivity(), ListContract.View {
 
     override fun onResume() {
         super.onResume()
-        presenter.requestContacts()
+        isResuming = true
+//        presenter.requestContacts()
     }
 
     override fun addContactClickListener() {
         presenter.onAdContactClicked()
     }
 
-    override fun contactClickListener(id: String) {
-        presenter.onContactCliked(id)
+    override fun contactClickListener(id: String, imageView: View) {
+        presenter.onContactCliked(id, imageView )
     }
 
     override fun contactLongClickListener(id: String) {
@@ -77,21 +86,28 @@ class ListActivity : AppCompatActivity(), ListContract.View {
         }
 
         val adapter = ContactListAdapter(contacts, false, {
-            id ->
-            goToDetailsActivity(id)
+            id, imageView ->
+            contactClickListener(id, imageView)
         }, {
-            presenter.onContactLongCliked(it)
+            id, transitionName ->
+            contactLongClickListener(id)
         })
 
         val favoritesAdapter = ContactListAdapter(favoriteContacts, true, {
-            id ->
-            goToDetailsActivity(id)
+            id, imageView ->
+            contactClickListener(id, imageView)
         }, {
-            presenter.onContactLongCliked(it)
+            id, transitionName ->
+            contactLongClickListener(id)
         })
 
         contactsRecycler.adapter = adapter
         favoritesRecycler.adapter = favoritesAdapter
+
+        if (!isResuming) {
+            contactsRecycler.scheduleLayoutAnimation()
+            favoritesRecycler.scheduleLayoutAnimation()
+        }
 
     }
 
@@ -145,10 +161,16 @@ class ListActivity : AppCompatActivity(), ListContract.View {
         startActivity(intent)
     }
 
-    override fun goToDetailsActivity(contactId: String) {
+    override fun goToDetailsActivity(contactId: String, imageView: View) {
         val intent = Intent(this, DetailsActivity::class.java)
+
         intent.putExtra(DetailsActivity.EXTRA_CONTACT_ID, contactId)
-        startActivity(intent)
+        intent.putExtra(DetailsActivity.EXTRA_TRANSITION_NAME, imageView.transitionName)
+
+        val options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, imageView, imageView.transitionName)
+
+        startActivity(intent, options.toBundle())
     }
 
     override fun goToSearchActivity() {

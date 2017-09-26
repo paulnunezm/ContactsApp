@@ -74,8 +74,8 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
         }
     }
 
-    override fun contactClickListener(id: String) {
-        presenter.onContactCliked(id)
+    override fun contactClickListener(id: String, imageView: View) {
+        presenter.onContactCliked(id, imageView)
     }
 
     override fun showEmptyScreen() {
@@ -90,16 +90,18 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
 
     override fun showContacts(contacts: List<Contact>) {
         searchContactsRecycler.adapter = ContactListAdapter(contacts, false, {
-            id ->
-            contactClickListener(id)
+            id, imageView ->
+            contactClickListener(id, imageView)
         }, {
+            id, imageView ->
             // long click is not implemented here
         })
     }
 
-    override fun goToDetailsActivity(contactId: String) {
+    override fun goToDetailsActivity(contactId: String, imageView: View) {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(DetailsActivity.EXTRA_CONTACT_ID, contactId)
+        intent.putExtra(DetailsActivity.EXTRA_TRANSITION_NAME, imageView.transitionName)
         startActivity(intent)
     }
 

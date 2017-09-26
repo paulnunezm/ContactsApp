@@ -8,7 +8,7 @@ interface ListContract {
 
     interface View {
         fun addContactClickListener()
-        fun contactClickListener(id: String)
+        fun contactClickListener(id: String, imageView: android.view.View)
         fun contactLongClickListener(id: String)
         fun toolbarClickListener()
         fun showEmtpyScreen()
@@ -19,14 +19,14 @@ interface ListContract {
         fun dismissModal()
         fun goToAddActivity()
         fun goToEditActivity(contactId: String)
-        fun goToDetailsActivity(contactId: String)
+        fun goToDetailsActivity(contactId: String, imageView: android.view.View)
         fun goToSearchActivity()
     }
 
     interface Presenter {
         fun requestContacts()
         fun onAdContactClicked()
-        fun onContactCliked(id: String)
+        fun onContactCliked(id: String, imageView: android.view.View)
         fun onContactLongCliked(id: String)
         fun onContactDeleteClicked(id: String)
         fun onContactEditClicked(id: String)
