@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="list_bottom_sheet_drawable_padding">32dp</dimen>
+    <dimen name="list_bottom_sheet_text_height">48dp</dimen>
+    <dimen name="list_bottom_sheet_text_size">18sp</dimen>
+
+</resources>
