@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="android:colorControlHighlight">@color/blue_light</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -29,11 +31,13 @@
         <item name="android:textColor">@color/light_gray</item>
 
     </style>
+
     <style name="DetailsScreenText">
         <item name="android:layout_height">50dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingEnd">16dp</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
     <style name="DetailsScreenText.Address" parent="DetailsScreenText">
