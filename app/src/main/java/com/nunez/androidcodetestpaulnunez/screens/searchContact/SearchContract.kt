@@ -7,7 +7,8 @@ interface SearchContract {
 
     interface View {
         fun contactClickListener(id: String)
-        fun showEmtpyScreen()
+        fun showEmptyScreen()
+        fun hideEmptyScreen()
         fun showContacts(contacts: List<Contact>)
         fun goToDetailsActivity(contactId: String)
         fun onSearchTextChange(query: String)

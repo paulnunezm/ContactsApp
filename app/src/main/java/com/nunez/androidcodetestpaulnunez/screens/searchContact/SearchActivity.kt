@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.transition.Fade
 import android.transition.Slide
 import android.view.Gravity
+import android.view.View
 import com.nunez.androidcodetestpaulnunez.R
 import com.nunez.androidcodetestpaulnunez.entities.Contact
 import com.nunez.androidcodetestpaulnunez.repository.LocalRepository
@@ -77,7 +78,15 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
         presenter.onContactCliked(id)
     }
 
-    override fun showEmtpyScreen() {}
+    override fun showEmptyScreen() {
+        emptyListImage.visibility = View.VISIBLE
+        searchContactsRecycler.visibility = View.GONE
+    }
+
+    override fun hideEmptyScreen() {
+        emptyListImage.visibility = View.GONE
+        searchContactsRecycler.visibility = View.VISIBLE
+    }
 
     override fun showContacts(contacts: List<Contact>) {
         searchContactsRecycler.adapter = ContactListAdapter(contacts, false, {

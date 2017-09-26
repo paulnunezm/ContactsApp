@@ -13,12 +13,13 @@ class SearchPresenter(
             t?.let {
                 if (t.isNotEmpty()) {
                     view.showContacts(t)
+                    view.hideEmptyScreen()
                 }else {
-                    view.showEmtpyScreen()
+                    view.showEmptyScreen()
                 }
             }
         },{
-            view.showEmtpyScreen()
+            view.showEmptyScreen()
         })
     }
 
