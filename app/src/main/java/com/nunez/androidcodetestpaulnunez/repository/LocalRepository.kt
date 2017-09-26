@@ -80,13 +80,14 @@ class LocalRepository(
     }
 
     override fun search(query: String): Single<List<Contact>> {
+        val searchQuery = query.toLowerCase()
         return Single.create {
             val results = realm.where(Contact::class.java)
-                    .contains("firstName", query)
+                    .contains("firstName", searchQuery)
                     .or()
-                    .contains("lastName", query)
+                    .contains("lastName", searchQuery)
                     .or()
-                    .contains("phonenumbers.number", query)
+                    .contains("phonenumbers.number", searchQuery)
                     .findAllSorted("firstName")
 
 
