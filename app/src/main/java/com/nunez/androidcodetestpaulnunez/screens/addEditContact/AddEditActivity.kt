@@ -207,8 +207,6 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
         // previously invisible view
         val myView = savedContactMessage
 
-        toolbar.visibility = View.INVISIBLE
-
         // hide the keyboard
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -240,7 +238,6 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
                 override fun onAnimationEnd(p0: Animator?) {
                     val handler = Handler()
                     handler.postDelayed({finish()},1000)
-//                    finish() // finish the activity/
                 }
             })
         } else {
