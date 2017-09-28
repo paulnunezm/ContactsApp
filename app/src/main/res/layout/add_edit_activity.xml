@@ -28,4 +28,8 @@
         android:scrollbars="vertical">
         <include layout="@layout/content_add_edit"/>
     </android.support.v4.widget.NestedScrollView>
+
+    <!--Set invisible by default-->
+    <include layout="@layout/contact_saved"/>
+
 </android.support.design.widget.CoordinatorLayout>

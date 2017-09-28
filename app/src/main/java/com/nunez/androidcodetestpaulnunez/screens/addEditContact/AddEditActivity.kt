@@ -1,10 +1,18 @@
 package com.nunez.androidcodetestpaulnunez.screens.addEditContact
 
+import android.animation.Animator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import com.nunez.androidcodetestpaulnunez.R
@@ -15,7 +23,9 @@ import com.nunez.androidcodetestpaulnunez.screens.contactList.ListActivity
 import com.nunez.androidcodetestpaulnunez.views.DatePickerFragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.add_edit_activity.*
+import kotlinx.android.synthetic.main.contact_saved.*
 import kotlinx.android.synthetic.main.content_add_edit.*
+
 
 class AddEditActivity : AppCompatActivity(), AddEditContract.View {
 
@@ -26,6 +36,7 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
 
     var edit_mode = false
     var contactId: String? = null
+    var menu: Menu? = null
 
     lateinit var presenter: AddEditContract.Presenter
     lateinit var interactor: AddEditContract.Interactor
@@ -54,7 +65,7 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
         }
 
         birthdayField.setOnFocusChangeListener { view, b ->
-            if(b)
+            if (b)
                 birthdayClickListener()
         }
 
@@ -66,6 +77,8 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
         else {
             R.menu.menu_add_edit
         }
+
+        this.menu = menu
 
         menuInflater.inflate(menuLayout, menu)
         return super.onCreateOptionsMenu(menu)
@@ -178,12 +191,62 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
     }
 
     override fun showContactSaved() {
-        closeView()
+        runSavedAnimation()
     }
 
     override fun closeView() {
-            val intent = Intent(this, ListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+        val intent = Intent(this, ListActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
+
+    private fun runSavedAnimation() {
+        // get a reference for the save action button
+        val saveButtonView = findViewById<View>(R.id.action_save)
+
+        // previously invisible view
+        val myView = savedContactMessage
+
+        supportActionBar?.hide()
+
+        // hide the keyboard
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+        }
+
+        container.visibility = View.GONE
+
+        if (myView != null && saveButtonView != null) {
+            // get the center for the clipping circle
+            val cx = container.width - saveButtonView.width / 2
+            Log.d(LOG_TAG, "$cx")
+            val cy = saveButtonView.measuredHeight / 2
+
+            // get the final radius for the clipping circle
+            val finalRadius = Math.max(myView.width, myView.height) / 2
+
+            // create the animator for this view (the start radius is zero)
+            val anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0f, finalRadius.toFloat())
+            anim.interpolator = AccelerateDecelerateInterpolator()
+
+            // make the view visible and start the animation
+            myView.visibility = View.VISIBLE
+            anim.start()
+            anim.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(p0: Animator?) {}
+                override fun onAnimationCancel(p0: Animator?) {}
+                override fun onAnimationStart(p0: Animator?) {
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    val handler = Handler()
+                    handler.postDelayed({finish()},1000)
+//                    finish() // finish the activity/
+                }
+            })
+        } else {
+            finish()
+        }
     }
 }
