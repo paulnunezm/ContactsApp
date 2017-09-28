@@ -207,15 +207,13 @@ class AddEditActivity : AppCompatActivity(), AddEditContract.View {
         // previously invisible view
         val myView = savedContactMessage
 
-        supportActionBar?.hide()
+        toolbar.visibility = View.INVISIBLE
 
         // hide the keyboard
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
         }
-
-        container.visibility = View.GONE
 
         if (myView != null && saveButtonView != null) {
             // get the center for the clipping circle
