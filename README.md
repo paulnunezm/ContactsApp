@@ -1,8 +1,8 @@
-#Contacts app
+# Contacts app
 
 A simple contacts application.
 
-###Description
+### Description
 - Added smooth Material animations
 - Created custom Views for managing multiple inputs of the same type in a form.
 - Implemented a CRUD and search using Realm as a database
@@ -10,14 +10,14 @@ A simple contacts application.
 - Followed Material Design guidelines
 - Implemented efficient branded launch screen
 
-###Screenshots
+### Screenshots
 ![Intro animation](screenshots/intro_animation.gif?raw=true)
 ![Search bar animation](screenshots/search_bar_animation.gif?raw=true)
 ![Save animation](screenshots/save_animation_v2.gif?raw=true)
 ![BottomSheet](screenshots/bottom_sheet.gif?raw=true)
 ![Add contact screen](screenshots/add_contact_scren.png?raw=true) 
 
-###Behavior
+### Behavior
 The app shows basic CRUD functionality and search implementations according to this set of
 rules:
 
