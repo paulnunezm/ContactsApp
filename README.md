@@ -4,11 +4,13 @@ A simple contacts application.
 
 ### Description
 - Added smooth Material animations
-- Created custom Views for managing multiple inputs of the same type in a form.
+- Created custom Views for managing multiple inputs of the same type in a form
 - Implemented a CRUD and search using Realm as a database
 - Coded using Clean Architecture principles
 - Followed Material Design guidelines
 - Implemented efficient branded launch screen
+- Added phone, maps and email intents
+- Provides a date picker for selecting the birthday
 
 ### Screenshots
 ![Intro animation](screenshots/intro_animation.gif?raw=true)
