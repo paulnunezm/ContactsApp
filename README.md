@@ -1,15 +1,23 @@
-# Android Code test 
+#Contacts app
 
-This test demonstrates a simple contacts application using Kotlin, RxJava, Faker and Realm.
+A simple contacts application.
 
-### Screenshots
+###Description
+- Added smooth Material animations
+- Created custom Views for managing multiple inputs of the same type in a form.
+- Implemented a CRUD and search using Realm as a database
+- Coded using Clean Architecture principles
+- Followed Material Design guidelines
+- Implemented efficient branded launch screen
+
+###Screenshots
 ![Intro animation](screenshots/intro_animation.gif?raw=true)
 ![Search bar animation](screenshots/search_bar_animation.gif?raw=true)
 ![Save animation](screenshots/save_animation_v2.gif?raw=true)
 ![BottomSheet](screenshots/bottom_sheet.gif?raw=true)
 ![Add contact screen](screenshots/add_contact_scren.png?raw=true) 
 
-### Description
+###Behavior
 The app shows basic CRUD functionality and search implementations according to this set of
 rules:
 
@@ -20,7 +28,7 @@ rules:
 - One or more phone numbers
 - One or more emails.
 
-### Technologies
+### Technologies and libraries
 - [Kotlin](https://kotlinlang.org/): as preferred programming language.
 - [RxJava](https://github.com/ReactiveX/RxJava): for composing asynchronous calls.
 - [JavaFaker](https://github.com/DiUS/java-faker): used to fill the database of fake user data.
